@@ -15,6 +15,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit.version>5.3.2</junit.version>
+        <project.scm.id>github</project.scm.id>
     </properties>
 
     <dependencies>
@@ -46,17 +47,44 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
         </plugins>
     </build>
-
+    <scm>
+        <developerConnection>scm:git:https//github.com/javinr/mb2g-release-plugin.git</developerConnection>
+        <url>https://github.com/javinr/mb2g-release-plugin.git</url>
+    </scm>
+    <repositories>
+        <repository>
+            <id>repsy-releases</id>
+            <url>https://repo.repsy.io/mvn/javinr/mb2g-releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>repsy-snapshots</id>
+            <url>https://repo.repsy.io/mvn/javinr/mb2g-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <distributionManagement>
         <repository>
-            <id>packagecloud.release</id>
-            <url>packagecloud+https://packagecloud.io/springframeworkguru/release</url>
+            <id>repsy-release</id>
+            <url>https://repo.repsy.io/mvn/javinr/mb2g-releases</url>
         </repository>
         <snapshotRepository>
             <id>packagecloud.snapshot</id>
-            <url>packagecloud+https://packagecloud.io/springframeworkguru/snapshot</url>
+            <url>https://repo.repsy.io/mvn/javinr/mb2g-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
