@@ -28,13 +28,13 @@ jobs:
       - run:
           name: Test
           command: mvn test
-  deploy:
+  release:
     docker:
       - image: cimg/openjdk:17.0
     steps:
       - checkout
-      - run: mvn -B -DskipTests clean package
-      - run: mvn -s .circleci/settings.xml deploy
+      - run: mvn  -DskipTests clean package
+      - run: mvn -s .circleci/settings.xml --batch-mode relase:prepare release:perform
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/guides/orchestrate/workflows/ & https://circleci.com/docs/reference/configuration-reference/#workflows
 workflows:
@@ -44,4 +44,4 @@ workflows:
       - build-and-test
   deploy:
     jobs:
-      - deploy
+      - release
