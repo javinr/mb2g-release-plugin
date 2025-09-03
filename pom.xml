@@ -79,11 +79,11 @@
     </repositories>
     <distributionManagement>
         <repository>
-            <id>repsy-release</id>
+            <id>repsy-releases</id>
             <url>https://repo.repsy.io/mvn/javinr/mb2g-releases</url>
         </repository>
         <snapshotRepository>
-            <id>packagecloud.snapshot</id>
+            <id>repsy-snapshots</id>
             <url>https://repo.repsy.io/mvn/javinr/mb2g-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
