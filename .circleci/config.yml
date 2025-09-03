@@ -28,7 +28,13 @@ jobs:
       - run:
           name: Test
           command: mvn test
-
+  deploy:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run: mvn -B -DskipTests clean package
+      - run: mvn -s .circleci/settings.xml deploy
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/guides/orchestrate/workflows/ & https://circleci.com/docs/reference/configuration-reference/#workflows
 workflows:
@@ -36,3 +42,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+  deploy:
+    jobs:
+      - deploy
